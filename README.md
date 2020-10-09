@@ -1,16 +1,20 @@
 # Installation
 
-To build the environment, do:
+To get and build the environment, do:
 
+    git clone https://github.com/klavins/pyedw.git
+    cd pyedw
     docker build -t pyedw .
 
-To connect to the EDW from off campus, you should first install the UW VPN via https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/. 
+# Running
 
-Next, to run a notebook server, do:
+To connect to the EDW from off campus, you should first install and run the UW VPN via https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/. 
+
+Next, to start jupyter, do:
 
     docker run -v "$PWD":/home/jovyan/work -p 8888:8888 pyedw 
 
-This will print out a link to the notebook server, which you should open in your browser.
+This will print out a link to the jupyter server, which you should open in your browser.
 
 Then, from within Jupyter, open a terminal and run
 
@@ -19,3 +23,4 @@ Then, from within Jupyter, open a terminal and run
 where username is your uw net id. 
 
 Finally, you should be able to open examples/basics.ipynb and run the notebook. 
+
