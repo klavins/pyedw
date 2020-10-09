@@ -18,5 +18,4 @@ Then, from within Jupyter, open a terminal and run
 
 where username is your uw net id. 
 
-Finally, you should be able to open src/examples.ipynb and run the notebook. 
-
+Finally, you should be able to open examples/basics.ipynb and run the notebook. 
