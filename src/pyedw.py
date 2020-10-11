@@ -1,10 +1,26 @@
 import pandas as pd
 import subprocess
 import re
+import getpass
+import os
 
-def str_query(str, db, debug=False):
+def kinit():
+    user = input("Enter UW NetID: ")
+    pw = getpass.getpass("Enter Password: ")
+    cmd = "echo '" + pw + "' | kinit " + user
+    result = os.system(cmd)
+    if result != 0:
+        print("kinit failed")
+    else:
+        print("authenticated")
+
+def kdestroy():
+    os.sysgtem("kdestroy -A")
+
+def run_sqlcmd(str, db):
     result = subprocess.run(
-        [
+
+          [
             "/opt/mssql-tools/bin/sqlcmd", 
             "-E",
             "-S",
@@ -14,7 +30,16 @@ def str_query(str, db, debug=False):
             "-s|",
             "-d",
             db
-        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+          ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 1:
+        print("sqlcmd failed. Are you logged into the UW VPN? Did you run kinit?\n\n")
+        print(result.stdout.decode('utf-8'))
+        raise RuntimeError
+    else:
+        return result
+
+def str_query(str, db, debug=False):
+    result = run_sqlcmd(str,db)
     if debug:
         print("query:\n-------------------\n", str)
         print("\nraw results:\n-------------------")

@@ -16,11 +16,5 @@ Next, to start jupyter, do:
 
 This will print out a link to the jupyter server, which you should open in your browser.
 
-Then, from within Jupyter, open a terminal and run
-
-    kinit username
-
-where username is your uw net id. 
-
 Finally, you should be able to open examples/basics.ipynb and run the notebook. 
 
