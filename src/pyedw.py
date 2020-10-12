@@ -10,12 +10,12 @@ def kinit():
     cmd = "echo '" + pw + "' | kinit " + user
     result = os.system(cmd)
     if result != 0:
-        print("kinit failed")
+        print("kinit failed. Are you logged into the UW VPN?")
     else:
         print("authenticated")
 
 def kdestroy():
-    os.sysgtem("kdestroy -A")
+    os.system("kdestroy -A")
 
 def run_sqlcmd(str, db):
     result = subprocess.run(
