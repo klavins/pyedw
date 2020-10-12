@@ -1,0 +1,11 @@
+SELECT
+    *
+
+FROM sec.BudgetActivityDetail
+
+WHERE TranPostingDate 
+  BETWEEN CONVERT(DATETIME, @START_DATE)
+  AND CONVERT(DATETIME, @END_DATE)
+  AND OrgCode = @ORG_CODE
+
+;
